@@ -13,7 +13,23 @@ public class Lab3Problem1 extends WindowAdapter{
    private JButton jbClear;
    private JScrollPane jspPassage;
    private String search;
-
+   private String searchFor;
+   private String passage;
+   
+   public class Find{
+      private String searchFor;
+      private String passages; 
+      
+      public Find(String searchFor, String passages){
+         this.searchFor = searchFor;
+         this.passages = passages;
+      }
+      
+      public boolean literallyAnything(){
+         return this.passages.contains(searchFor);
+      }
+   }
+   
    public Lab3Problem1(){
       f.setTitle("Find");
       JPanel jpNorth = new JPanel();
@@ -58,7 +74,8 @@ public class Lab3Problem1 extends WindowAdapter{
          }
       }
       );
-   }   
+         } 
+       
    public static void main(String[] args){
       new Lab3Problem1();
    }
@@ -71,13 +88,13 @@ public class Lab3Problem1 extends WindowAdapter{
       f.dispose();
  		System.exit(0);
  	}
-   public void finder(){
+   public Find finder(){
       search = jtfSearch.getText();
       String test = jtaPassage.getText();
-      ArrayList<Character> letters = new ArrayList<Character>();
-      for (char c : test.toCharArray()){
-         letters.add(c);
-      }
-      System.out.println(search + "\n" + letters);
+      Find fi = new Find(search, test);
+      if(fi.literallyAnything()){
+         System.out.println("weeee");
+     }
+      return fi;
    }   
 }   
